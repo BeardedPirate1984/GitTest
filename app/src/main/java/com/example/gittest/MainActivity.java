@@ -53,5 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("To jest ostatnie zdjęcie");
             }
         });
+        prevButton.setOnClickListener(view -> {
+            if (photoId > 0){
+                photoId--;
+                currentPhoto.setImageResource(photoIds.get(photoId));
+                textView.setText("");
+            }
+            else{
+                textView.setText("To jest pierwsze zdjęcie");
+            }
+        });
     }
 }
