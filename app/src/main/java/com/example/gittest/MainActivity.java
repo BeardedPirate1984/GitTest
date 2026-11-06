@@ -1,11 +1,13 @@
 package com.example.gittest;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         randomButton = findViewById(R.id.button2);
         nextButton = findViewById(R.id.button3);
         textView = findViewById(R.id.textView);
+        if(savedInstanceState != null){
+            photoId = savedInstanceState.getInt("PHOTO", 0);
+        }
 
         photoIds.add(R.drawable.leaves);
         photoIds.add(R.drawable.patryk);
@@ -68,5 +73,11 @@ public class MainActivity extends AppCompatActivity {
         randomButton.setOnClickListener(view -> {
             currentPhoto.setImageResource(photoIds.get(rnd.nextInt(4)));
         });
+    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i("CYKL", "onSaveInstanceState called");
+        outState.putInt("PHOTO", photoId);
     }
 }
