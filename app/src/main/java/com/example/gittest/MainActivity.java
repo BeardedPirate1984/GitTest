@@ -12,11 +12,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> photoIds = new ArrayList<>();
     int photoId = 0;
-
+    Random rnd = new Random();
     Button nextButton, randomButton, prevButton;
     ImageView currentPhoto;
     TextView textView;
@@ -62,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
             else{
                 textView.setText("To jest pierwsze zdjęcie");
             }
+        });
+
+        randomButton.setOnClickListener(view -> {
+            currentPhoto.setImageResource(photoIds.get(rnd.nextInt(4)));
         });
     }
 }
